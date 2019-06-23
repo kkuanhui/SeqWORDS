@@ -6,6 +6,7 @@ setup(name='SeqWORDS',
       author='Harry Wu',
       author_email='tf00604520@gmail.com',
       license='MIT',
+      url='https://github.com/kkuanhui/SeqWORDS',
       packages=['SeqWORDS'],
       install_requires=[
           'numpy',
