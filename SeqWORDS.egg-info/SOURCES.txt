@@ -1,0 +1,8 @@
+setup.py
+SeqWORDS/__init__.py
+SeqWORDS.egg-info/PKG-INFO
+SeqWORDS.egg-info/SOURCES.txt
+SeqWORDS.egg-info/dependency_links.txt
+SeqWORDS.egg-info/not-zip-safe
+SeqWORDS.egg-info/requires.txt
+SeqWORDS.egg-info/top_level.txt
