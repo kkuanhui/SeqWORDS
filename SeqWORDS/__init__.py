@@ -3,7 +3,7 @@ This is SeqWORDS algorithm.
 SeqWORDS is an unsupervised Chinese words segmentation method.
 """
 
-import devimal
+import decimal
 import re
 from collections import Counter
 from decimal import *
@@ -14,8 +14,6 @@ import numpy as np
 def preprocessing(corpus):
     reChinese = re.compile('[\u4e00-\u9fa5]+') 
     return reChinese.findall(corpus)
-
-
 
 def cut_word(texts, tauL, tauF1, useProbThld1):
     word_ls = []
@@ -76,7 +74,7 @@ def cut_ftword(texts, tauL, tauF1, useProbThld1):
 
 
 def cut_wordseq(texts, tauL, tauF2, useProbThld2):
-        wordseq_ls = []
+    wordseq_ls = []
     for sentence in texts:
         for m in list(range(len(sentence))):
             if m + tauL > len(sentence):
@@ -382,8 +380,6 @@ def updateDictionary2(texts, tauL, ftword_list, word_list, wordseq_list):
     smooth_list = []
     for wordseq in nxy.keys():
         sum_y_nxy[wordseq[0]] += nxy[wordseq]
-    # Why smooth here? It doesn't make any sense. The procedure is obviously wrong.
-    # Because some sum of y of nxy may still zero, so smooth it.
     for wordseq in sum_y_nxy.keys():
         if sum_y_nxy[wordseq] > Decimal(0):
             smooth_list.append(sum_y_nxy[wordseq])
@@ -467,40 +463,6 @@ class DPCache2:
         for wordseq in self.cache.keys():
             self.cache_top.append((wordseq, self.cache[wordseq].top()))
         return self.cache_top
-
-
-
-
-class LimitStack:
-    
-    def __init__(self, size, initial_value):
-        self.size = size
-        self.initial_value = initial_value
-        self.stack = [self.initial_value] * self.size
-        self.head = self.size -1
-        
-    def push(self, element):
-        if self.head + 1 >= self.size:
-            self.head = 0
-        else:
-            self.head += 1
-        self.stack[self.head] = element
-    
-    def get(self, idx):
-        if idx >= self.size:
-            idx = self.size - 1
-        if self.head - idx < 0:
-            pos = self.size + self.head - idx
-        else:
-            pos = self.head - idx
-        return self.stack[pos]
-    
-
-    def top(self):
-        return self.get(0)
-
-
-
 
 def pruneDictionaryft(ftword_list, useProbThld1): 
     smooth_list = [] 
@@ -619,54 +581,30 @@ def segmentation(sentence, boundary):
             idx+=1
     return sentence
 
-
-def show_sorted_dict(d):    
-    s = [(k, d[k]) for k in sorted(d, key=d.get, reverse=True)]
-    for k, v in s:
-        print(k, ":", v)
-
-
-
-class TopWORDS:
+class SeqWORDS:
     
     def __init__(self, corpus, 
-                 tauL = 10, tauF1 = 3, tauF2 = 3, 
+                 tauL = 10, tauF = 3, 
                  iter_time_total = 10, convergeThld = 0.1, 
                  useProbThld1 = 10e-10, useProbThld2 = 10e-8, 
                  segmenThld = 0.1):
         self.corpus = corpus
         self.tauL = tauL
-        self.tauF1 = tauF1
-        self.tauF2 = tauF2
+        self.tauF1 = tauF
+        self.tauF2 = tauF
         self.iter_time_total = iter_time_total
         self.convergeThld = Decimal(convergeThld)
         self.useProbThld1 = Decimal(useProbThld1)
         self.useProbThld2 = Decimal(useProbThld2)
         self.segmenThld = Decimal(segmenThld)
     
-
-    def overcomplete_dict(self):
+    
+    def run(self):
         texts = preprocessing(self.corpus)
         self.texts = texts
-        """----------------------"""
-        start = time.time()
         self.word_list    =    cut_word(texts, self.tauL, self.tauF1, self.useProbThld1)
-        end = time.time()
-        minute = (end - start)/60
-        """----------------------"""
-        start = time.time()
         self.ftword_list  =  cut_ftword(texts, self.tauL, self.tauF1, self.useProbThld1)
-        end = time.time()
-        minute = (end - start)/60
-        """----------------------"""
-        start = time.time()
         self.wordseq_list = cut_wordseq(texts, self.tauL, self.tauF2, self.useProbThld2)
-        end = time.time()
-        minute = (end - start)/60
-        
-    
-    def run_loop(self):
-        big_start = time.time()
         total_iter_time = self.iter_time_total
         iter_time_now = 1
         convergence = False
@@ -684,10 +622,6 @@ class TopWORDS:
                 FL1 = math.log(FL[-1])
                 now_Likelihoods += FL1
             Likelihoods_ratio = last_Likelihoods/now_Likelihoods
-            if Likelihoods_ratio > 1:
-                a = "apple"
-            else:
-                b = "banana"
             if bool(iter_time_now != 1) and bool( abs(1 - Likelihoods_ratio) <= self.convergeThld ):
                 convergence  = True
             last_Likelihoods = now_Likelihoods
@@ -695,24 +629,8 @@ class TopWORDS:
             self.ftword_list = new_ftword_list
             self.wordseq_list = new_wordseq_list
             iter_time_now += 1
-        big_end = time.time()
        
 
-    def MLSegmentation(self, connectThld):
-        return MLSegmentation(self.texts, connectThld, self.tauL, self.ftword_list, self.wordseq_list)
+    def cut(self, connectThld):
+        return MLSegmentation(self.texts, connectThld, self.tauL, self.ftword_list, self.wordseq_list)[0]
         # Finally, return a segmented corpus.
-       
-
-    def show_ftword_dict(self):
-        show_sorted_dict(self.ftword_list)
-
-
-    def show_wordseq_dict(self):
-        show_sorted_dict(self.wordseq_list)
-
-
-    def show_word_dict(self):
-        show_sorted_dict(self.word_list)
-
-
-
