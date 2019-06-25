@@ -581,7 +581,7 @@ def segmentation(sentence, boundary):
             idx+=1
     return sentence
 
-class SeqWORDS:
+class WDMtwseq(object):
     
     def __init__(self, corpus, 
                  tauL = 10, tauF = 3, 
@@ -632,5 +632,5 @@ class SeqWORDS:
        
 
     def cut(self, connectThld):
-        return MLSegmentation(self.texts, connectThld, self.tauL, self.ftword_list, self.wordseq_list)[0]
+        return MLSegmentation(self.texts, connectThld, self.tauL, self.ftword_list, self.wordseq_list)
         # Finally, return a segmented corpus.

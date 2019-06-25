@@ -1,9 +1,11 @@
+
+
 from setuptools import setup
 
 setup(name='SeqWORDS',
       version='0.1',
-      description='This is a Chinese words segmentation method.',
-      author='Harry Wu',
+      description='Chinese word segmentation',
+      author='kkuanhui Wu',
       author_email='tf00604520@gmail.com',
       license='MIT',
       url='https://github.com/kkuanhui/SeqWORDS',
