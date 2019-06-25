@@ -38,7 +38,7 @@ Below is word cloud, it shows the most frequent words. "寶玉" is the biggest o
 <img src="SeqWORDS_cloud.png"
     alt="SeqWORDS_cloud"
     style="float: left; margin-right: 10px;" />
-<figcaption> word cloud SeqWORDS</figcaption>
+
 </figure>
 
 Below is PCA of word vectors. The plot containing 51 words includes "寶玉" and 50 words that most relative to "寶玉". Amoung these words, there 42 names has great relativity to "寶玉". 
@@ -47,7 +47,7 @@ Below is PCA of word vectors. The plot containing 51 words includes "寶玉" and
 <img src="010_word2vec_SeqWORDS.png"
     alt="010_word2vec_SeqWORDS"
     style="float: left; margin-right: 10px;" />
-<figcaption> SeqWORDS</figcaption>
+<figcaption> </figcaption>
 </figure>
 
 ## License
