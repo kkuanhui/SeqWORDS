@@ -8,8 +8,6 @@ pip install SeqWORDS
 ```python
 import SeqWORDS
 
-for i in range(100):
-    print("Fuck YOU!)
 ```
 ### Example
 ##### Introduction of Story of Stone
@@ -26,5 +24,6 @@ for i in range(100):
     style="float: left; margin-right: 10px;" />
 <figcaption> SeqWORDS</figcaption>
 </figure>
+
 ### License
 [MIT](https://choosealicense.com/licenses/mit/)
