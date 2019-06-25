@@ -586,7 +586,7 @@ class WDMtwseq(object):
     def __init__(self, corpus, 
                  tauL = 10, tauF = 3, 
                  iter_time_total = 10, convergeThld = 0.1, 
-                 useProbThld1 = 10e-10, useProbThld2 = 10e-8, 
+                 useProbThld1 = 10e-10, useProbThld2 = 10e-10, 
                  segmenThld = 0.1):
         self.corpus = corpus
         self.tauL = tauL
@@ -631,6 +631,6 @@ class WDMtwseq(object):
             iter_time_now += 1
        
 
-    def cut(self, connectThld):
+    def cut(self, connectThld = 0.5):
         return MLSegmentation(self.texts, connectThld, self.tauL, self.ftword_list, self.wordseq_list)
         # Finally, return a segmented corpus.

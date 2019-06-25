@@ -8,19 +8,27 @@ pip install SeqWORDS
 ## Usage
 ```python
 import SeqWORDS
-SeqWORDS.cut(corpus)
+corpus = # YOUR TARGET CORPUS
+# Set a SW object
+SW = SeqWORDS.WDMtwseq(corpus, 
+                        tauL = 10, tauF = 3, 
+                        iter_time_total = 10, convergeThld = 0.1, 
+                        useProbThld1 = 10e-10, useProbThld2 = 10e-10)
+# Run EM algoritm
+SW.run()
+# Segmentation
+SW.cut(connectThld = 0.5)
 ```
 ## Parameter
-| parameter      | type | description                                      |
-| -------------- | ---  | ------------------------------------------------ |
-| `tuaL`         | Int  | the output of dox as a parsed JSON object        |
-| `tuaF`         | Int  | whether to output a readme or just docs          |
-| `useProb1`     | Int  | a parsed package.json                            |
-| `useProb2`     | Int  | whether to output a travis badge along with docs |
-| `connectThld`  | Int  | whether to output a travis badge along with docs |
-| `travis`       | Int  | whether to output a travis badge along with docs |
-| `travis`       | Int  | whether to output a travis badge along with docs |
-| `travis`       | Int  | whether to output a travis badge along with docs |
+| parameter        | type | description                                      |
+| ---------------- | ---  | ------------------------------------------------ |
+| `tuaL`           | Int  | assume the longest word contain tuaL characters|
+| `tuaF`           | Int  | remove words from initial dict that relative occurence lower than tauF|
+| `iter_time_total`| Int  | maximum EM iteration time |
+| `convergeThld`   | Int  | EM convergence threshold |
+| `useProbThld1`   | Int  |  minimum word use probability|
+| `useProbThld2`   | Int  |  minimum two words sequence use probability|
+| `connectThld`    | Int  | if alpha bigger than connectThld then combine two words|
 ## Example
 ### Story of Stone
 Story of Stone, also called Dream of the Red Chamber, composed by Xueqin Cao in 18th century during the Qing dynasty. The novel features in massive number of characters.
