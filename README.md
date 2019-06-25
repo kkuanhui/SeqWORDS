@@ -1,22 +1,29 @@
-# SeqWORDS: An Unsupervised Chinese Word Segmentation package
-This is Python SeqWORDS package. SeqWORDS is an unsupervised Chinese word segmentation method, which not demand a dictionary in hand.
+# SeqWORDS package
+SeqWORDS is an unsupervised Chinese word segmentation method, which not demand a dictionary in hand. This package is an implementation of SeqWORDS algorithm on python.
 ## Installation
+To install this package, execute command below in terminal.
 ```bash
 pip install SeqWORDS
 ```
 ## Usage
 ```python
 import SeqWORDS
-
-file = open(example.txt, mode = r)
-corpus = file.read()
-file.close()
-
 SeqWORDS.cut(corpus)
 ```
+## Parameter
+| parameter      | type | description                                      |
+| -------------- | ---  | ------------------------------------------------ |
+| `tuaL`         | Int  | the output of dox as a parsed JSON object        |
+| `tuaF`         | Int  | whether to output a readme or just docs          |
+| `useProb1`     | Int  | a parsed package.json                            |
+| `useProb2`     | Int  | whether to output a travis badge along with docs |
+| `connectThld`  | Int  | whether to output a travis badge along with docs |
+| `travis`       | Int  | whether to output a travis badge along with docs |
+| `travis`       | Int  | whether to output a travis badge along with docs |
+| `travis`       | Int  | whether to output a travis badge along with docs |
 ## Example
-### Introduction of Story of Stone
-Story of Stone, also called Dream of the Red Chamber, composed by Xueqin Cao in 18th century during the Qing dynasty.
+### Story of Stone
+Story of Stone, also called Dream of the Red Chamber, composed by Xueqin Cao in 18th century during the Qing dynasty. The novel features in massive number of characters.
 ### Results
 Below is word cloud, it shows the most frequent words. "寶玉" is the biggest one amoung of all cloud. 
 <figure>
