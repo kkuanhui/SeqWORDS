@@ -24,7 +24,7 @@ SW.cut(connectThld = 0.5)
 | ---------------- | ---  | ------------------------------------------------ |
 | `tuaL`           | Int  | assume the longest word contain tuaL characters|
 | `tuaF`           | Int  | remove words from initial dict that relative occurence lower than tauF|
-| `iter_time_total`| Int  | maximum EM iteration time |
+| `iter_time_total`| Int  | max EM iteration time |
 | `convergeThld`   | Int  | EM convergence threshold |
 | `useProbThld1`   | Int  |  minimum word use probability|
 | `useProbThld2`   | Int  |  minimum two words sequence use probability|
@@ -37,7 +37,7 @@ Below is word cloud, it shows the most frequent words. "寶玉" is the biggest o
 <figure>
 <img src="SeqWORDS_cloud.png"
     alt="SeqWORDS_cloud"
-    style="float: left; margin-right: 10px;" />
+    style="margin-right: 10px;" />
 
 </figure>
 
@@ -46,7 +46,7 @@ Below is PCA of word vectors. The plot containing 51 words includes "寶玉" and
 <figure>
 <img src="010_word2vec_SeqWORDS.png"
     alt="010_word2vec_SeqWORDS"
-    style="float: left; margin-right: 10px;" />
+    style="margin-right: 10px;" />
 <figcaption> </figcaption>
 </figure>
 
